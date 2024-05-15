@@ -4,7 +4,7 @@
 separator="////////////////////////////////////////////////////////"
 
 
-echo $separator >> sysinfo
+echo "$separator" >> sysinfo
 echo $separator >> sysinfo
 #Get the hostname
 echo "This is the hostname." >> sysinfo
