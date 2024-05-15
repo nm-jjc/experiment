@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Output file
+output_file="system_info.txt"
+
+#Organizes system information.
+separator="////////////////////////////////////////////////////////"
+
+echo $separator >> sysinfo.txt
+echo $separator >> sysinfo.txt
+# Get the hostname
+echo "This is the hostname" >> sysinfo.txt
+hostname >> sysinfo.txt
+echo $separator >> sysinfo.txt 
+echo $separator >> sysinfo.txt
+# Get operating system
+echo "This is the operating system" >> sysinfo.txt
+os=$(cat /etc/*release | grep "PRETTY_NAME" | cut -d '=' -f 2 | tr -d '"')
+
+# Get uptime
+uptime=$(uptime -p)
+
+# Get kernel version
+kernel_version=$(uname -r)
+
+# Get CPU information
+cpu_info=$(lscpu)
+
+# Get memory information
+memory_info=$(free -h)
+
+# Get IP information
+ip_info=$(ip addr)
+
+# Get filesystem utilization
+filesystem_usage=$(df -h)
+
+# Get last five lines of general log file containing "error" (case-insensitive)
+error_logs=$(grep -i "error" /var/log/syslog | tail -n 5)
+
+# Combine all information
+system_info="
+System Hostname: $hostname
+Operating System: $os
+System Uptime: $uptime
+Linux Kernel Version: $kernel_version
+CPU Information:
+$cpu_info
+Memory Information:
+$memory_info
+IP Information:
+$ip_info
+Filesystem Utilization:
+$filesystem_usage
+Last five lines of log file containing 'error':
+$error_logs
+"
+
+# Output to file
+echo "$system_info" > "$output_file"
+
+echo "System information has been saved to $output_file"
