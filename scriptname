@@ -52,7 +52,7 @@ echo $separator >> $sysinfo
 
 #Get IP information
 echo "This is the IP information." >> $sysinfo
-ip addr >> sysinfo.txt
+ip addr >> $sysinfo
 echo $separator >> $sysinfo
 echo $separator >> $sysinfo
 
@@ -64,7 +64,9 @@ echo $separator >> $sysinfo
 echo $separator >> $sysinfo
 
 #Get the last five lines of general log file containing "error" (case-insensitive)
+echo "This is the last five lines of general log file containing an error." >> $sysinfo
 error_logs=$(grep -i "error" /var/log/syslog | tail -n 5)
 echo $error_logs >> $sysinfo
-
+echo $separator >> $sysinfo
+echo $separator >> $sysinfo
 echo "System information is saved to sysinfo."
