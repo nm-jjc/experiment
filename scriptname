@@ -16,9 +16,7 @@ echo $separator >> $sysinfo
 #Get operating system
 echo "This is the operating system." >> $sysinfo
 os="$(cat /etc/*release | grep "PRETTY_NAME" | cut -d '=' -f 2 | tr -d '"')"
-$os
-$os >> $sysinfo
-echo $os
+echo $os >> $sysinfo
 echo $separator >> $sysinfo
 echo $separator >> $sysinfo
 
