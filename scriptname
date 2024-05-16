@@ -69,4 +69,4 @@ error_logs=$(grep -i "error" /var/log/syslog | tail -n 5)
 echo $error_logs >> $sysinfo
 echo $separator >> $sysinfo
 echo $separator >> $sysinfo
-echo "System information is saved to sysinfo."
+echo "System information is saved to info.txt in the home directory."
